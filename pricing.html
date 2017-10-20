@@ -40,17 +40,20 @@
     $('#amount-enterprise').val(enterprisePrice);
     $('#display-price-plus').text('$' + plusPrice);
     $('#display-price-enterprise').text('$' + enterprisePrice);
+    $('.price').show();
 	}
 </script>
 
 <style>
 .paypal-button {
 	text-align: center;
+  display: none;
 }
 
 .price {
 	text-align: right;
 	font-weight: bold;
+  display: none;
 }
 </style>
 
@@ -61,6 +64,7 @@
 	<input type="hidden" name="business" value="sarah@blueridgeresumes.com">
   <div>
     <select id="user-count" onchange="changePrice();">
+      <option value="">select value</option>
       <option>500</option>
       <option>1000</option>
       <option>2000</option>
