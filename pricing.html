@@ -1,0 +1,56 @@
+<!-- HEADER -->
+<script
+  src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+  integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+  crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/feda98137e.js"></script>
+
+<script>
+	function changePrice() {
+    var newPrice = $('#user-count').val();
+    $('#amount-plus').val(newPrice);
+    $('#amount-enterprise').val(newPrice*2);
+    $('#display-price-plus').text('$' + newPrice);
+    $('#display-price-enterprise').text('$' + newPrice*2);
+	}
+</script>
+
+<style>
+.paypal-button {
+	text-align: center;
+}
+
+.price {
+	text-align: right;
+	font-weight: bold;
+}
+</style>
+
+<!-- FORM ELEMENT -->
+<form id="form-professional" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="paypal">
+	<input type="hidden" name="cmd" value="_cart">
+	<input type="hidden" name="currency_code" value="USD">
+	<input type="hidden" name="business" value="sarah@blueridgeresumes.com">
+  <div>
+    <select id="user-count" onchange="changePrice();">
+      <option value="1">one</option>
+      <option value="2">two</option>
+    </select>
+	</div>
+	<input type="hidden" name="item_number">
+  <input type="hidden" name="amount" id="amount-plus" value="150.00">
+  <input type="hidden" name="amount" id="amount-enterprise" value="150.00">
+	<input type="hidden" name="button_subtype" value="products">
+	<input type="hidden" name="shipping" value="0.00">
+	<input type="hidden" name="add" value="1">
+	<img alt="" style="border-width: 0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+<!-- PRICE ELEMENT -->
+<h2 class="price"><span id="display-price-plus">?</span></h2>
+<h2 class="price"><span id="display-price-enterprise">?</span></h2>
+
+<!-- PAYPAL BUTTON -->
+<div class="paypal-button">
+	<img id="button-image-professional" src="//www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" alt="PayPal - The safer, easier way to pay online!" onclick="$('#form-professional').submit()">
+</div>
