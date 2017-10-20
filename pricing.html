@@ -6,12 +6,40 @@
   <script src="https://use.fontawesome.com/feda98137e.js"></script>
 
 <script>
+  var price = {
+    "plus" : {
+      '500' : 25,
+      '1000' : 45,
+      '2000' : 85,
+      '4000' : 165,
+      '7250' : 190,
+      '12500' : 230,
+      '17500' : 265,
+      '23000' : 310,
+      '28000' : 345,
+      '33000' : 385
+    },
+    "enterprise" : {
+      '500' : 45,
+      '1000' : 85,
+      '2000' : 165,
+      '4000' : 330,
+      '7250' : 385,
+      '12500' : 465,
+      '17500' : 545,
+      '23000' : 635,
+      '28000' : 710,
+      '33000' : 790
+    }
+  };
+
 	function changePrice() {
-    var newPrice = $('#user-count').val();
-    $('#amount-plus').val(newPrice);
-    $('#amount-enterprise').val(newPrice*2);
-    $('#display-price-plus').text('$' + newPrice);
-    $('#display-price-enterprise').text('$' + newPrice*2);
+    var plusPrice = price.plus[$('#user-count').val()];
+    var enterprisePrice = price.enterprise[$('#user-count').val()];
+    $('#amount-plus').val(plusPrice);
+    $('#amount-enterprise').val(enterprisePrice);
+    $('#display-price-plus').text('$' + plusPrice);
+    $('#display-price-enterprise').text('$' + enterprisePrice);
 	}
 </script>
 
@@ -33,8 +61,16 @@
 	<input type="hidden" name="business" value="sarah@blueridgeresumes.com">
   <div>
     <select id="user-count" onchange="changePrice();">
-      <option value="1">one</option>
-      <option value="2">two</option>
+      <option>500</option>
+      <option>1000</option>
+      <option>2000</option>
+      <option>4000</option>
+      <option>7250</option>
+      <option>12500</option>
+      <option>17500</option>
+      <option>23000</option>
+      <option>28000</option>
+      <option>33000</option>
     </select>
 	</div>
 	<input type="hidden" name="item_number">
