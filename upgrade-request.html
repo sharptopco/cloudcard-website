@@ -1,0 +1,35 @@
+<!--
+?SQF_PLAN_TYPE=Plus&SQF_PLAN_SIZE=12500&SQF_PLAN_PRICE=230
+-->
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+  integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+  crossorigin="anonymous"></script>
+
+<div class="sqs-block html-block sqs-block-html" data-block-type="2">
+  <div class="sqs-block-content">
+    <h2>Selected Plan:</h2>
+    <ul>
+      <li><strong>Type:&nbsp;</strong><span id="plan-type">???</span></li>
+      <li><strong>Size:</strong>&nbsp;<span id="plan-size">???</span> requests/year</li>
+      <li><strong>Price:</strong>&nbsp;$<span id="plan-price">???</span>/mo<br>(billed annually)</li>
+    </ul>
+  </div>
+</div>
+
+  <script>
+  function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  $('#plan-type').text(getParameterByName('SQF_PLAN_TYPE'));
+  $('#plan-size').text(getParameterByName('SQF_PLAN_SIZE'));
+  $('#plan-price').text(getParameterByName('SQF_PLAN_PRICE'));
+  </script>
