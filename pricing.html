@@ -1,9 +1,9 @@
-<!-- HEADER -->
 <script
   src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
   integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
   crossorigin="anonymous"></script>
   <script src="https://use.fontawesome.com/feda98137e.js"></script>
+
 
 <script>
   var price = {
@@ -33,73 +33,70 @@
     }
   };
 
+  var planSize = 0;
+  var plusPrice = 0;
+  var enterprisePrice = 0;
+
 	function changePrice() {
-    var plusPrice = price.plus[$('#user-count').val()];
-    var enterprisePrice = price.enterprise[$('#user-count').val()];
-    $('#amount-plus').val(plusPrice);
-    $('#amount-enterprise').val(enterprisePrice);
+    planSize = $('#plan-size').val();
+    plusPrice = price.plus[planSize];
+    enterprisePrice = price.enterprise[planSize];
+    // $('#amount-plus').val(plusPrice);
+    // $('#amount-enterprise').val(enterprisePrice);
+    $('.display-plan-size').text(planSize);
     $('#display-price-plus').text('$' + plusPrice);
     $('#display-price-enterprise').text('$' + enterprisePrice);
-    $('.price').show();
+    $('.pricing-container').show();
+    $('.select-size').hide();
 	}
+
+  function resetView() {
+    $('.pricing-container').hide();
+    $('.select-size').show();
+  }
 </script>
 
-<style>
-.price {
-	text-align: right;
-	font-weight: bold;
-  display: none;
-}
-</style>
-
 <!-- SELECT BOX -->
-  <div>
-    <select id="user-count" onchange="changePrice();">
-      <option value="">select value</option>
-      <option>500</option>
-      <option>1000</option>
-      <option>2000</option>
-      <option>4000</option>
-      <option>7250</option>
-      <option>12500</option>
-      <option>17500</option>
-      <option>23000</option>
-      <option>28000</option>
-      <option>33000</option>
-    </select>
+  <div class="select-size">
+    <h1>About many photos will you request each year?</h1>
+    <h2>
+      <select id="plan-size" name="plan-size" onchange="changePrice();">
+        <option value="">select value</option>
+        <option>500</option>
+        <option>1000</option>
+        <option>2000</option>
+        <option>4000</option>
+        <option>7250</option>
+        <option>12500</option>
+        <option>17500</option>
+        <option>23000</option>
+        <option>28000</option>
+        <option>33000</option>
+      </select> or fewer
+  </h2>
 	</div>
 
-<!-- PRICE ELEMENT -->
-<h2 class="price"><span id="display-price-plus">?</span></h2>
-<h2 class="price"><span id="display-price-enterprise">?</span></h2>
-
 <div class="pricing-container">
+  <h2 class="display-size">Up to <a href="#" onclick="resetView();"><span class="display-plan-size">&nbsp;</span><i class="fa fa-pencil fa-1"></i></a> photo requests per year.</h2>
+  <div class="sqs-block horizontalrule-block sqs-block-horizontalrule"><div class="sqs-block-content"><hr></div></div>
 	<table class="pricing">
-
-        <tr class="header">
-          <td></td>
-          <td></td>
-          <td><h3>Most Popular</h3></td>
-          <td></td>
-        </tr>
 
 		<tr class="header">
 			<td>&nbsp;</td>
 			<td>
-				<h1>Free</h1>
-				<h2><strong>Free</strong></h2>
-			</td>
-			<td>
 				<h1>Starter</h1>
-				<h2><strong>$29/year<br />
-                    per 100 cardholders</strong><br />
-                    billed annually
-                </h2>
+				<h2><strong>$0</strong>/mo</h2>
+        <p class="price-subtext">Always Free<p>
 			</td>
 			<td>
-				<h1>Large<br/>University</h1>
-				<h2><strong>$799/mo</strong>
-                  <br/>billed annually</h2>
+				<h1>Plus</h1>
+				<h2><strong><span id="display-price-plus">?</span></strong>/mo</h2>
+        <p class="price-subtext">(billed annually)<p>
+			</td>
+			<td>
+				<h1>Enterprise</h1>
+        <h2><strong><span id="display-price-enterprise">?</span></strong>/mo</h2>
+        <p class="price-subtext">(billed annually)<p>
 			</td>
 		</tr>
 
@@ -108,11 +105,13 @@
 				<h3>Compare our plans</h3>
 			</td>
 
+			<td><h3 class="current-plan">Current<br />Plan</h3></td>
+
 			<td>
 				<div class="sqs-block-button sqs-block button-block">
 					<div class="sqs-block-button-content sqs-block-content">
 						<div class="sqs-block-button-container--center">
-							<a href="/free-trial" class="sqs-block-button-element--small sqs-block-button-element">Free Trial</a>
+							<a href="#" class="sqs-block-button-element--small sqs-block-button-element" onclick="window.location.href='/upgrade-request?SQF_PLAN_TYPE=Plus&SQF_PLAN_SIZE=' + planSize + '&SQF_PLAN_PRICE=' + plusPrice;">Upgrade Now</a>
 						</div>
 					</div>
 				</div>
@@ -122,60 +121,22 @@
 				<div class="sqs-block-button sqs-block button-block">
 					<div class="sqs-block-button-content sqs-block-content">
 						<div class="sqs-block-button-container--center">
-							<a href="/free-trial" class="sqs-block-button-element--small sqs-block-button-element">Free Trial</a>
-						</div>
-					</div>
-				</div>
-			</td>
-
-			<td>
-				<div class="sqs-block-button sqs-block button-block">
-					<div class="sqs-block-button-content sqs-block-content">
-						<div class="sqs-block-button-container--center">
-							<a href="/contact?SQF_SOURCE=on-premise" class="sqs-block-button-element--small sqs-block-button-element">Contact Us</a>
+              <a href="#" class="sqs-block-button-element--small sqs-block-button-element" onclick="window.location.href='/upgrade-request?SQF_PLAN_TYPE=Enterprise&SQF_PLAN_SIZE=' + planSize + '&SQF_PLAN_PRICE=' + enterprisePrice;">Upgrade Now</a>
 						</div>
 					</div>
 				</div>
 			</td>
 		</tr>
 
-		<tr class="info">
-			<td>New Users per Year</td>
-			<td><strong>1,500</strong></td>
-			<td><strong>Unlimited</strong></td>
-			<td><strong>Unlimited</strong></td>
+    <tr class="info">
+			<td>Photo Approval Workflow</td>
+			<td><span class="icon-check"></span></td>
+			<td><span class="icon-check"></span></td>
+			<td><span class="icon-check"></span></td>
 		</tr>
 
-		<tr class="info">
-			<td>Additional New Users per Year</td>
-			<td><strong>+ $10 per 100</strong></td>
-			<td><strong>Unlimited</strong></td>
-			<td><strong>Unlimited</strong></td>
-		</tr>
-
-		<tr class="info">
+    <tr class="info">
 			<td>Bulk User Import</td>
-			<td><span class="icon-check"></span></td>
-			<td><span class="icon-check"></span></td>
-			<td><span class="icon-check"></span></td>
-		</tr>
-
-		<tr class="info">
-			<td>Customizable Emails</td>
-			<td><span class="icon-check"></span></td>
-			<td><span class="icon-check"></span></td>
-			<td><span class="icon-check"></span></td>
-		</tr>
-
-		<tr class="info">
-			<td>Customizable Photo Requirements</td>
-			<td><span class="icon-check"></span></td>
-			<td><span class="icon-check"></span></td>
-			<td><span class="icon-check"></span></td>
-		</tr>
-
-		<tr class="info">
-			<td>Customizable Terms and Conditions</td>
 			<td><span class="icon-check"></span></td>
 			<td><span class="icon-check"></span></td>
 			<td><span class="icon-check"></span></td>
@@ -189,21 +150,70 @@
 		</tr>
 
 		<tr class="info">
-			<td>Customize Colors and Branding</td>
-			<td>$499 (one time)</td>
-			<td>Free (one time)</td>
-			<td>Free (annually)</td>
+			<td>No Daily Photo Limit</td>
+      <td></td>
+			<td><span class="icon-check"></span></td>
+			<td><span class="icon-check"></span></td>
 		</tr>
 
 		<tr class="info">
-			<td>Our Staff Approves/Denies Photos For You</td>
+			<td>Ad Free</td>
+      <td></td>
+			<td><span class="icon-check"></span></td>
+			<td><span class="icon-check"></span></td>
+		</tr>
+
+		<tr class="info">
+			<td>Customizable Emails</td>
+      <td></td>
+			<td><span class="icon-check"></span></td>
+			<td><span class="icon-check"></span></td>
+		</tr>
+
+		<tr class="info">
+			<td>Customizable Photo Requirements</td>
+      <td></td>
+			<td><span class="icon-check"></span></td>
+			<td><span class="icon-check"></span></td>
+		</tr>
+
+		<tr class="info">
+			<td>Customizable Terms and Conditions</td>
+      <td></td>
+			<td><span class="icon-check"></span></td>
+			<td><span class="icon-check"></span></td>
+		</tr>
+
+		<tr class="info">
+			<td>Customize Colors and Branding</td>
+      <td></td>
+      <td><span class="icon-check"></span></td>
+      <td><span class="icon-check"></span></td>
+		</tr>
+
+		<tr class="info">
+			<td>Auto Image Rotation</td>
 			<td></td>
 			<td></td>
 			<td><span class="icon-check"></span></td>
 		</tr>
 
 		<tr class="info">
-			<td>Free Integration Services*</td>
+			<td>Auto Image Cropping*</td>
+			<td></td>
+			<td></td>
+			<td><span class="icon-check"></span></td>
+		</tr>
+
+		<tr class="info">
+			<td>Auto Image Classification</td>
+			<td></td>
+			<td></td>
+			<td><span class="icon-check"></span></td>
+		</tr>
+
+		<tr class="info">
+			<td>Auto Image Approval</td>
 			<td></td>
 			<td></td>
 			<td><span class="icon-check"></span></td>
@@ -216,15 +226,36 @@
 			<td><span class="icon-check"></span></td>
 		</tr>
 	</table>
-  <p style="font-size: smaller;">
-    * The Large University plan includes up to 200 hours of professional, integration services to be used within six months of start of service.
-  </p>
 </div>
 
 <style type="text/css">
+.current-plan {
+    color: #2587e8;
+}
+
+.fa-pencil {
+  font-size: 0.5em;
+}
+.select-size {
+  text-align: center;
+}
+
+.display-size {
+  text-align: center;
+}
+
+.display-plan-size {
+  font-weight: bolder;
+}
+
+.price-subtext {
+  margin-top: -1em;
+}
+
 .pricing-container {
 	overflow: auto;
 	width: 100%;
+  display: none;
 }
 
 .pricing {
@@ -248,7 +279,6 @@
 
 .pricing h2 {
 	font-size: 1.5em;
-	padding-bottom: 1em;
 }
 
 .pricing h3 {
