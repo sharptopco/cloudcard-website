@@ -42,7 +42,7 @@
     if (!planSize) {
       return;
     }
-    
+
     plusPrice = price.plus[planSize];
     enterprisePrice = price.enterprise[planSize];
     // $('#amount-plus').val(plusPrice);
@@ -73,27 +73,27 @@
 </script>
 
 <!-- SELECT BOX -->
-  <div class="select-size">
-    <h1>About many photos will you request each year?</h1>
-    <h2>
-      <select id="plan-size" name="plan-size" onchange="changePrice();">
-        <option value="">select value</option>
-        <option value="500">&nbsp;less than 500</option>
-        <option value="1000">&nbsp;500 to 1,000</option>
-        <option value="2000">1,000 to 2,000</option>
-        <option value="4000">2,000 to 4,000</option>
-        <option value="7250">4,000 to 7,250</option>
-        <option value="12500">7,250 to 12,500</option>
-        <option value="17500">12,500 to 17,500</option>
-        <option value="23000">17,500 to 23,000</option>
-        <option value="28000">23,000 to 28,000</option>
-        <option value="33000">28,000 to 33,000</option>
-      </select>
+<div>
+  <!-- <h1 class="select-size">About many photos will you request each year?</h1> -->
+  <h2 class="display-size">My organization needs
+    <!-- <a href="#" onclick="resetView();"><span class="display-plan-size">&nbsp;</span><i class="fa fa-pencil fa-1"></i></a>  -->
+    <select id="plan-size" name="plan-size" onchange="changePrice();">
+      <option value="">select value</option>
+      <option value="500">&nbsp;less than 500</option>
+      <option value="1000">&nbsp;500 to 1,000</option>
+      <option value="2000">1,000 to 2,000</option>
+      <option value="4000">2,000 to 4,000</option>
+      <option value="7250">4,000 to 7,250</option>
+      <option value="12500">7,250 to 12,500</option>
+      <option value="17500">12,500 to 17,500</option>
+      <option value="23000">17,500 to 23,000</option>
+      <option value="28000">23,000 to 28,000</option>
+      <option value="33000">28,000 to 33,000</option>
+    </select>
+    photo requests per year.
   </h2>
-	</div>
-
+</div>
 <div class="pricing-container">
-  <h2 class="display-size">Up to <a href="#" onclick="resetView();"><span class="display-plan-size">&nbsp;</span><i class="fa fa-pencil fa-1"></i></a> photo requests per year.</h2>
   <div class="sqs-block horizontalrule-block sqs-block-horizontalrule"><div class="sqs-block-content"><hr></div></div>
 	<table class="pricing">
 
