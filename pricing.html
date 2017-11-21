@@ -39,6 +39,10 @@
 
 	function changePrice() {
     planSize = $('#plan-size').val();
+    if (!planSize) {
+      return;
+    }
+    
     plusPrice = price.plus[planSize];
     enterprisePrice = price.enterprise[planSize];
     // $('#amount-plus').val(plusPrice);
@@ -54,6 +58,18 @@
     $('.pricing-container').hide();
     $('.select-size').show();
   }
+
+  $("document").ready(function(){
+    console.log("document ready");
+    var planSizeParam = getParameterByName('SQF_PLAN_SIZE');
+    console.log("planSizeParam: " + planSizeParam);
+
+    if(planSizeParam) {
+      console.log("param found - skipping size selection");
+      $('#plan-size').val(planSizeParam);
+      changePrice();
+    }
+  });
 </script>
 
 <!-- SELECT BOX -->
@@ -62,17 +78,17 @@
     <h2>
       <select id="plan-size" name="plan-size" onchange="changePrice();">
         <option value="">select value</option>
-        <option>500</option>
-        <option>1000</option>
-        <option>2000</option>
-        <option>4000</option>
-        <option>7250</option>
-        <option>12500</option>
-        <option>17500</option>
-        <option>23000</option>
-        <option>28000</option>
-        <option>33000</option>
-      </select> or fewer
+        <option value="500">&nbsp;less than 500</option>
+        <option value="1000">&nbsp;500 to 1,000</option>
+        <option value="2000">1,000 to 2,000</option>
+        <option value="4000">2,000 to 4,000</option>
+        <option value="7250">4,000 to 7,250</option>
+        <option value="12500">7,250 to 12,500</option>
+        <option value="17500">12,500 to 17,500</option>
+        <option value="23000">17,500 to 23,000</option>
+        <option value="28000">23,000 to 28,000</option>
+        <option value="33000">28,000 to 33,000</option>
+      </select>
   </h2>
 	</div>
 
