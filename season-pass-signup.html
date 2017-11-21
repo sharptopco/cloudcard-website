@@ -1,5 +1,6 @@
 <!--
-?SQF_PLAN_TYPE=Plus&SQF_PLAN_SIZE=12500&SQF_PLAN_PRICE=230
+?SQF_PLAN_TYPE=Plus&SQF_PLAN_SIZE=12500&SQF_PLAN_PRICE=0.59
+?SQF_PLAN_TYPE=Pro&SQF_PLAN_PRICE=0.99
 -->
 
 <script
@@ -9,11 +10,9 @@
 
   <div class="sqs-block-content">
     <h2>Selected Plan:</h2>
-    <ul>
-      <li><strong>Type:&nbsp;</strong><span id="plan-type">???</span></li>
-      <li><strong>Size:</strong>&nbsp;<span id="plan-size">???</span> requests/year</li>
-      <li><strong>Price:</strong>&nbsp;$<span id="plan-price">???</span>/mo<br>(billed annually)</li>
-    </ul>
+    <p><strong>Type:&nbsp;</strong><span id="plan-type">???</span></p>
+    <!-- <li><strong>Size:</strong>&nbsp;<span id="plan-size">???</span> requests/year</li> -->
+    <p><strong>Price:</strong>&nbsp;$<span id="plan-price">???</span><br />per photo request (billed annually)</p>
   </div>
 
   <script>
@@ -30,4 +29,6 @@
   $('#plan-type').text(getParameterByName('SQF_PLAN_TYPE'));
   $('#plan-size').text(getParameterByName('SQF_PLAN_SIZE'));
   $('#plan-price').text(getParameterByName('SQF_PLAN_PRICE'));
+
+  $('select').change($('#plan-size').text());
   </script>
