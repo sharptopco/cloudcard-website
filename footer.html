@@ -3,7 +3,7 @@
  * ?SQF_ORG_NAME=Penn%20State%20University&auth_token=p2a0mughfe5u3j7s860vsv6slt6fjv53
  */
 $("document").ready(function(){
-  orgName = getParameterByNameAndStoreInLocalStorage('SQF_ORG_NAME');
-  authToken = getParameterByNameAndStoreInLocalStorage('auth_token');
+  orgName = getFromParameterOrLocalStorage('SQF_ORG_NAME');
+  authToken = getFromParameterOrLocalStorage('auth_token');
 });
 </script>

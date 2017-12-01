@@ -12,7 +12,7 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-function getParameterByNameAndStoreInLocalStorage (paramName) {
+function getFromParameterOrLocalStorage (paramName) {
   var paramValue = getParameterByName(paramName);
   if(paramValue) {
     localStorage.setItem(paramName, paramValue);
