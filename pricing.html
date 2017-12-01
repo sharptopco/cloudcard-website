@@ -60,12 +60,8 @@
   }
 
   $("document").ready(function(){
-    console.log("document ready");
     var planSizeParam = getParameterByName('SQF_PLAN_SIZE');
-    console.log("planSizeParam: " + planSizeParam);
-
     if(planSizeParam) {
-      console.log("param found - skipping size selection");
       $('#plan-size').val(planSizeParam);
       changePrice();
     }
