@@ -1,5 +1,6 @@
 <!--
 ?SQF_PLAN_TYPE=Plus&SQF_PLAN_SIZE=12500&SQF_PLAN_PRICE=230
+?SQF_PLAN_TYPE=Starter
 -->
 
 <script
@@ -11,15 +12,20 @@
     <h2>Selected Plan:</h2>
     <ul>
       <li><strong>Type:&nbsp;</strong><span id="plan-type">???</span></li>
-      <li><strong>Size:</strong>&nbsp;<span id="plan-size">???</span> requests/year</li>
-      <li><strong>Price:</strong>&nbsp;$<span id="plan-price">???</span>/mo<br>(billed annually)</li>
+      <li><strong>Size:</strong>&nbsp;<span id="plan-size">???</span></li>
+      <li><strong>Price:</strong>&nbsp;<span id="plan-price">???</span></li>
     </ul>
   </div>
 
-  <script>
   <!-- requires header.html to be injected into the page or site header -->
-
-  $('#plan-type').text(getParameterByName('SQF_PLAN_TYPE'));
-  $('#plan-size').text(getParameterByName('SQF_PLAN_SIZE'));
-  $('#plan-price').text(getParameterByName('SQF_PLAN_PRICE'));
+  <script>
+    var planType = getParameterByName('SQF_PLAN_TYPE');
+    $('#plan-type').text(planType);
+    if (planType === 'Starter') {
+      $('#plan-size').text('10 photos/day');
+      $('#plan-price').text('Free Forever');
+    } else {
+      $('#plan-size').text(getParameterByName('SQF_PLAN_SIZE') + ' requests/year');
+      $('#plan-price').text('$' + getParameterByName('SQF_PLAN_PRICE') + '/mo<br>(billed annually)');
+    }
   </script>
