@@ -28,4 +28,52 @@
       $('#plan-size').text(getParameterByName('SQF_PLAN_SIZE') + ' requests/year');
       $('#plan-price').text('$' + getParameterByName('SQF_PLAN_PRICE') + '/mo<br>(billed annually)');
     }
+
+    $("input:text[name='email']").on('change', function() {
+      if (validateEmail(this.value)){
+        alert( this.value + ' is a valid email address');
+        if (isBlacklisted(this.value)) {
+          alert( this.value + ' is a blacklisted address');
+          $(this).siblings('.description').css({ 'color' : 'red', 'opacity' : '1' });
+          $("input[type=submit]").attr('disabled','disabled');
+          $("input[type=submit]").css({ 'background-color' : 'gray', 'border-color' : 'gray', 'opacity' : '0.5' });
+        } else {
+          $(this).siblings('.description').css({ 'color' : '', 'opacity' : '' });
+          $("input[type=submit]").removeAttr('disabled');
+          $("input[type=submit]").css({ 'background-color' : '', 'border-color' : '', 'opacity' : '' });
+        }
+      }        
+      else
+        alert( this.value + ' is NOT a valid email address');
+    });
+
+    function validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    function isBlacklisted(email) {
+      var failures = 0;
+      [
+        'gmail\\.com', 
+        'yahoo\\.com',
+        'yahoo\\.in',
+        'earthlink\\.net',
+        'hotmail\\.com',
+        'icloud\\.com',
+        'me\\.com',
+        'outlook\\.com',
+        'aol\\.com',
+        'hotmail\\.com',
+        'mail\\.com',
+        'email\\.com',
+        'yandex\\.com',
+        'protonmail\\.com',
+        'verizon\\.net'
+      ].forEach(function(domain) {
+          var re = new RegExp("^[\\w.+\\-]+@" + domain + "$");
+          if (re.test(String(email).toLowerCase())) failures++;
+      });
+      return failures > 0;
+    }
   </script>
