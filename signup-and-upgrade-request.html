@@ -10,47 +10,42 @@
 
   <div class="sqs-block-content">
     <h2>Selected Plan:</h2>
-    <ul>
+    <p id="loading-plan-details">Loading plan details...</p>
+    <ul id="plan-details" style="display: none;">
       <li><strong>Type:&nbsp;</strong><span id="plan-type">???</span></li>
       <li><strong>Size:</strong>&nbsp;<span id="plan-size">???</span></li>
-      <li><strong>Price:</strong>&nbsp;<span id="plan-price">???</span></li>
+      <li><strong>Price:</strong>&nbsp;<span id="plan-price">???</span><span id="billed-annually"><br/>(billed annually)</span></li>
     </ul>
   </div>
 
   <!-- requires header.html to be injected into the page or site header -->
   <script>
-    var planType = getParameterByName('SQF_PLAN_TYPE');
-    $('#plan-type').text(planType);
-    if (planType === 'Starter') {
-      $('#plan-size').text('10 photos/day');
-      $('#plan-price').text('Free Forever');
-    } else {
-      $('#plan-size').text(getParameterByName('SQF_PLAN_SIZE') + ' requests/year');
-      $('#plan-price').text('$' + getParameterByName('SQF_PLAN_PRICE') + '/mo<br>(billed annually)');
-    }
+    $( document ).ready( function() {
+      var planType = getParameterByName('SQF_PLAN_TYPE');
+      $('#plan-type').text(planType);
+      if (planType === 'Starter') {
+        $('#plan-size').text('10 photos/day');
+        $('#plan-price').text('Free Forever');
+        $('#billed-annually').hide();
+      } else {
+        $('#plan-size').text(getParameterByName('SQF_PLAN_SIZE') + ' requests/year');
+        $('#plan-price').text('$' + getParameterByName('SQF_PLAN_PRICE') + '/mo');
+        $('#billed-annually').show();
+      }
+      $('#loading-plan-details').hide();
+      $('#plan-details').show();
 
-    $("input:text[name='email']").on('change', function() {
-      if (validateEmail(this.value)){
-        alert( this.value + ' is a valid email address');
+      var submitButton = $("input[type=submit]");
+      $("input:text[name='email']").on('change', function() {
         if (isBlacklisted(this.value)) {
-          alert( this.value + ' is a blacklisted address');
-          $(this).siblings('.description').css({ 'color' : 'red', 'opacity' : '1' });
-          $("input[type=submit]").attr('disabled','disabled');
-          $("input[type=submit]").css({ 'background-color' : 'gray', 'border-color' : 'gray', 'opacity' : '0.5' });
+          $(this).parent().addClass('error');
+          disable(submitButton);
         } else {
-          $(this).siblings('.description').css({ 'color' : '', 'opacity' : '' });
-          $("input[type=submit]").removeAttr('disabled');
-          $("input[type=submit]").css({ 'background-color' : '', 'border-color' : '', 'opacity' : '' });
+          $(this).parent().removeClass('error');
+          enable(submitButton);
         }
-      }        
-      else
-        alert( this.value + ' is NOT a valid email address');
+      });
     });
-
-    function validateEmail(email) {
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(email).toLowerCase());
-    }
 
     function isBlacklisted(email) {
       var failures = 0;
@@ -75,5 +70,15 @@
           if (re.test(String(email).toLowerCase())) failures++;
       });
       return failures > 0;
+    }
+
+    function disable(button) {
+      button.attr('disabled','disabled');
+      button.css({ 'background-color' : 'gray', 'border-color' : 'gray', 'opacity' : '0.5' });
+    }
+
+    function enable(button) {
+      button.removeAttr('disabled');
+      button.css({ 'background-color' : '', 'border-color' : '', 'opacity' : '' });
     }
   </script>
