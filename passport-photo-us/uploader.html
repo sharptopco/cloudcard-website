@@ -39,13 +39,25 @@
                 post(data);
             };
             reader.readAsDataURL(fileInput.files[0]);
+            showStepThree();
         }
+    }
+
+    function showStepTwo() {
+        $('.step-one').hide('slow');
+        $('.step-two').show('slow');
+        $('.step-three').hide('slow');
+    }
+
+    function showStepThree() {
+        $('.step-one').hide('slow');
+        $('.step-two').hide('slow');
+        $('.step-three').show('slow');
     }
 
     function onFileChange(element) {
         fileInput = element;
-        $('.step-one').hide('slow');
-        $('.step-two').show('slow');
+        showStepTwo();
     }
 
 </script>
@@ -59,6 +71,10 @@
         display: none;
     }
 
+    .step-three {
+        display: none;
+    }
+
     input {
         width: 100%;
     }
@@ -68,16 +84,16 @@
     <p><input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="onFileChange(this)"/></p>
 </div>
 
-<!--<h2 class="step-two">We're perfectly cropping your photo, which takes a few monments...</h2>-->
-
 <h2 class="step-two">We'll email your perfectly cropped photo to you in a few minutes when it's ready?</h2>
 <div class="step-container step-two">
+    <p>Where should we send your photo?</p>
     <p><input id="email" type="text" placeholder="email address"></p>
     <p style="text-align: right;">
         <button onclick="submit();">Submit</button>
     </p>
 </div>
 
+<h2 class="step-three">That's it! Check your email for your perfectly cropped passport photo.</h2>
 <!--<textarea id="base"></textarea>-->
 
 <!-- END OF UPLOADER -->
