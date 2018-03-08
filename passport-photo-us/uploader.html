@@ -3,44 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>Uploader</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
-    <script type="text/javascript">
-
-        var foo = {
-            "email": "bacon@bacon.com",
-            "encodedImage": null
-        }
-
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    // $('#falseinput').attr('src', e.target.result);
-                    // $('#base').val(e.target.result);
-                    foo.encodedImage = e.target.result;
-                    sendIt(foo);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        var URL = 'https://test-api.onlinephotosubmission.com/api/passport-photos'
-
-        function sendIt(data){
-            $.ajax({
-                type: 'POST',
-                url: URL,
-                dataType: 'json',
-                contentType: 'application/json',
-                data: JSON.stringify(data)
-            });
-        }
-
-    </script>
 </head>
 <body>
-<h1>File Upload</h1>
-<input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="readURL(this);"/> <br><br>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    var fileInput = null;
+    var URL = 'https://api.onlinephotosubmission.com/api/passport-photos';
+
+    function post(data) {
+        $.ajax({
+            type: 'POST',
+            url: URL,
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(data)
+        });
+    }
+
+    function submit() {
+        var data = {
+            'email': $('#email').val(),
+            'encodedImage': null
+        }
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                // $('#falseinput').attr('src', e.target.result);
+                // $('#base').val(e.target.result);
+                data.encodedImage = e.target.result;
+                post(data);
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+
+    function onFileChange(element) {
+        fileInput = element;
+        $('.step-one').hide('slow');
+        $('.step-two').show('slow');
+    }
+
+</script>
+
+<style>
+    .step-container {
+        width: 200px;
+    }
+
+    .step-two {
+        display: none;
+    }
+
+    input {
+        width: 100%;
+    }
+</style>
+<h2 class="step-one">First, take your picture or select a photo from your device.</h2>
+<div class="step-container step-one">
+    <p><input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="onFileChange(this)"/></p>
+</div>
+
+<!--<h2 class="step-two">We're perfectly cropping your photo, which takes a few monments...</h2>-->
+
+<h2 class="step-two">We'll email your perfectly cropped photo to you in a few minutes when it's ready?</h2>
+<div class="step-container step-two">
+    <p><input id="email" type="text" placeholder="email address"></p>
+    <p style="text-align: right;">
+        <button onclick="submit();">Submit</button>
+    </p>
+</div>
 
 <!--<textarea id="base"></textarea>-->
 </body>
