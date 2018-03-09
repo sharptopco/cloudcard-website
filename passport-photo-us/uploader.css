@@ -6,7 +6,10 @@
 }
 
 .step-container {
-    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
 }
 
 .step-two {
@@ -17,8 +20,18 @@
     display: none;
 }
 
+#fileinput {
+    display: none;
+}
+
 input {
     width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 8px;
 }
 
 #upload-button {
@@ -28,6 +41,7 @@ input {
     border-radius: 10%;
     padding: 10px;
     text-align: center;
+    width: 200px;
 }
 
 #selected-image {
@@ -39,6 +53,24 @@ input {
     justify-content: space-between;
 }
 
+button {
+    border-radius: 300px;
+    padding: 12px 24px;
+    font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: #3d9991;
+    border-color: #3d9991;
+}
+
 .uploader-secondary-button {
     background-color: rgba(61, 153, 145, 0.6);
+}
+
+#button-padding {
+    width: 200px;
 }
