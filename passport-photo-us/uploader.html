@@ -5,15 +5,25 @@
     <title>Uploader</title>
 </head>
 <body>
+<style>
+    body {
+        background-image: url("background.jpg");
+    }
+</style>
 
 <!-- START OF UPLOADER -->
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 <script type="text/javascript">
     var fileInput = null;
     var URL = 'https://api.onlinephotosubmission.com/api/passport-photos';
+    var data = {
+        'email': null,
+        'encodedImage': null
+    }
 
     function post(data) {
         $.ajax({
@@ -25,22 +35,10 @@
         });
     }
 
-    function submit() {
-        var data = {
-            'email': $('#email').val(),
-            'encodedImage': null
-        }
-        if (fileInput.files && fileInput.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                // $('#falseinput').attr('src', e.target.result);
-                // $('#base').val(e.target.result);
-                data.encodedImage = e.target.result;
-                post(data);
-            };
-            reader.readAsDataURL(fileInput.files[0]);
-            showStepThree();
-        }
+    function showStepOne() {
+        $('.step-one').show('slow');
+        $('.step-two').hide('slow');
+        $('.step-three').hide('slow');
     }
 
     function showStepTwo() {
@@ -57,14 +55,39 @@
 
     function onFileChange(element) {
         fileInput = element;
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#selected-image').attr('src', e.target.result).width('75%');
+                $('#selected-image').show();
+                $('#upload-icon').hide();
+                data.encodedImage = e.target.result;
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        }
         showStepTwo();
+    }
+
+    function submit() {
+        data.email = $('#email').val();
+        post(data);
+        showStepThree();
     }
 
 </script>
 
 <style>
+    #uploader-container{
+        background:rgba(0,0,0,0.5);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px;
+    }
+
     .step-container {
-        width: 200px;
+        width: 250px;
     }
 
     .step-two {
@@ -78,23 +101,45 @@
     input {
         width: 100%;
     }
+
+    #upload-button {
+        border: 10px solid white;
+        border-radius: 10%;
+        padding: 10px;
+        text-align: center;
+    }
+
+    #selected-image {
+        display: none;
+    }
+
+     #buttons {
+         display: flex;
+         justify-content: space-between;
+     }
 </style>
-<h2 class="step-one">First, take your picture or select a photo from your device.</h2>
-<div class="step-container step-one">
-    <p><input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="onFileChange(this)"/></p>
-</div>
+<div id="uploader-container" class="transparent">
+    <h2 class="step-one">First, take your picture or select a photo from your device.</h2>
+    <div class="step-container step-one">
+        <div id="upload-button" onclick="$('#fileinput').click()">
+            <i id="upload-icon" class="fas fa-upload fa-9x"></i>
+            <img id="selected-image" src="#" alt="your selected image" />
+        </div>
+        <p><input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="onFileChange(this)"/></p>
+    </div>
 
-<h2 class="step-two">We'll email your perfectly cropped photo to you in a few minutes when it's ready?</h2>
-<div class="step-container step-two">
-    <p>Where should we send your photo?</p>
-    <p><input id="email" type="text" placeholder="email address"></p>
-    <p style="text-align: right;">
-        <button onclick="submit();">Submit</button>
-    </p>
-</div>
+    <h2 class="step-two">We'll email your perfectly cropped photo to you in a few minutes when it's ready?</h2>
+    <div class="step-container step-two">
+        <p>Where should we send your photo?</p>
+        <p><input id="email" type="text" placeholder="email address"></p>
+        <div id="buttons">
+            <button onclick="showStepOne()">Back</button>
+            <button onclick="submit();">Submit</button>
+        </div>
+    </div>
 
-<h2 class="step-three">That's it! Check your email for your perfectly cropped passport photo.</h2>
-<!--<textarea id="base"></textarea>-->
+    <h2 class="step-three">That's it! Check your email for your perfectly cropped passport photo.</h2>
+</div>
 
 <!-- END OF UPLOADER -->
 
