@@ -38,3 +38,7 @@ input {
     display: flex;
     justify-content: space-between;
 }
+
+.uploader-secondary-button {
+    background-color: rgba(61, 153, 145, 0.6);
+}
