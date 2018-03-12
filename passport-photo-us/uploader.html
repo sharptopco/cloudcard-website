@@ -1,5 +1,5 @@
 <!-- START OF UPLOADER -->
-<div id="uploader-container" class="transparent">
+<div id="uploader-container">
     <h2 class="step-one">First, take your picture or select a photo from your device.</h2>
     <div class="step-container step-one">
         <div id="upload-button" onclick="$('#fileinput').click()">
@@ -22,4 +22,10 @@
 
     <h2 class="step-three">That's it! Check your email for your perfectly cropped passport photo.</h2>
 </div>
+<script>
+    setTimeout(function () {
+        $('#loading').hide('slow');
+        $('#uploader-content').show('slow');
+    }, 1000);
+</script>
 <!-- END OF UPLOADER -->
