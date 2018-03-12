@@ -35,7 +35,7 @@ input {
 }
 
 #upload-button {
-    background: rgba(61, 153, 145, 0.5);
+    background: rgba(11, 36, 67, 0.9);
     color: white;
     border: 10px solid white;
     border-radius: 10%;
@@ -45,7 +45,7 @@ input {
 }
 
 #upload-button:hover {
-    background: rgba(61, 153, 145, 1);
+    background: rgba(11, 36, 67, 1);
 }
 
 #upload-label {
@@ -72,12 +72,13 @@ button {
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #fff;
-    background-color: #3d9991;
-    border-color: #3d9991;
+    background-color: #0b2443;
+    border-color: #0b2443;
 }
 
 .uploader-secondary-button {
-    background-color: rgba(61, 153, 145, 0.6);
+    background-color: rgba(11, 36, 67, 0.7);
+    border-color: rgba(11, 36, 67, 0.7);
 }
 
 #button-padding {
