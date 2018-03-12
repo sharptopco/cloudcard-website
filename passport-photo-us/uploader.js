@@ -40,7 +40,7 @@ function onFileChange(element) {
         reader.onload = function (e) {
             $('#selected-image').attr('src', e.target.result).width('75%');
             $('#selected-image').show();
-            $('#upload-icon').hide();
+            $('#user-icon').hide();
             data.encodedImage = e.target.result;
         };
         reader.readAsDataURL(fileInput.files[0]);

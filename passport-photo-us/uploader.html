@@ -3,8 +3,9 @@
     <h2 class="step-one">First, take your picture or select a photo from your device.</h2>
     <div class="step-container step-one">
         <div id="upload-button" onclick="$('#fileinput').click()">
-            <i id="upload-icon" class="fas fa-upload fa-9x"></i>
+            <i id="user-icon" class="fas fa-user fa-9x"></i>
             <img id="selected-image" src="#" alt="your selected image" />
+            <p id="upload-label">Upload Photo</p>
         </div>
         <p><input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="onFileChange(this)"/></p>
     </div>

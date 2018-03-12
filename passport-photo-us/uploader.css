@@ -44,6 +44,15 @@ input {
     width: 200px;
 }
 
+#upload-button:hover {
+    background: rgba(61, 153, 145, 1);
+}
+
+#upload-label {
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-weight: bold;
+}
 #selected-image {
     display: none;
 }
