@@ -1,9 +1,9 @@
-<p><a id="download-link" href="#" download><img id="download-photo-image"/></a></p>
-
+<p><a class="download-link" href="#" download><img id="download-photo-image"/></a></p>
+<p><a href="#" class="sqs-block-button-element--small sqs-block-button-element download-link" download>Download</a></p>
 <script>
     var photoURL = "https://api.onlinephotosubmission.com/api/photos/" + getFromParameterOrLocalStorage('photoKey') + "/bytes";
     $('#download-photo-image').attr("src", photoURL);
-    $('#download-link').attr("href", photoURL);
+    $('.download-link').attr("href", photoURL);
     $('.sqs-block-button-element').attr("href", photoURL);
     $('.sqs-block-button-element').attr("target", "_blank");
     setTimeout(function () {
