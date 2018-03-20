@@ -1,7 +1,7 @@
 <div class="your-photo-div"><img src="https://sharptopco.github.io/cloudcard-website/passport-photo-us/your-photo/sample-watermark.png" style="width: 100%"/></div>
 
 <script>
-    var photoKey = getParameterByName('photoKey');
+    var photoKey = getFromParameterOrLocalStorage('photoKey');
     $('.your-photo-div').css("background-image", "url(//api.onlinephotosubmission.com/api/photos/" + photoKey + "/bytes)");
     setTimeout(function () {
         $('#loading').hide('slow');
