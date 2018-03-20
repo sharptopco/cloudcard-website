@@ -1,5 +1,5 @@
 var fileInput = null;
-var URL = 'https://api.onlinephotosubmission.com/api/passport-photos';
+var URL = 'https://' + API_URL + '/api/passport-photos';
 var data = {
     'email': null,
     'encodedImage': null

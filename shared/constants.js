@@ -1,0 +1,1 @@
+var API_URL = "test-api.onlinephotosubmission.com"
