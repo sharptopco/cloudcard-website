@@ -1,0 +1,13 @@
+<p><img id="download-photo-image"/></p>
+<p><a id="download-link" href="#" download>Download</a></p>
+
+<script>
+    var photoURL = "https://api.onlinephotosubmission.com/api/photos/" + getFromParameterOrLocalStorage('photoKey') + "/bytes";
+    $('#download-photo-image').attr("src", photoURL);
+    $('#download-link').attr("href", photoURL);
+    setTimeout(function () {
+        $('#loading').hide('slow');
+        $('#download-photo-content').show('slow');
+        $('#download-photo-content').addClass('centered')
+    }, 1000);
+</script>
