@@ -9,4 +9,6 @@ Assets for CloudCard Websites
     - [uploader.js](https://sharptopco.github.io/cloudcard-website/passport-photo-us/uploader.js)
     - [uploader.css](https://sharptopco.github.io/cloudcard-website/passport-photo-us/uploader.css)
     - [loading indicator](https://sharptopco.github.io/cloudcard-website/passport-photo-us/spin-1.1s-200px.gif)
+- Shared
+    - [parameters.js](https://sharptopco.github.io/cloudcard-website/shared/parameters.js)
     
