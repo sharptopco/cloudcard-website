@@ -1,0 +1,26 @@
+.your-photo-div {
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.your-photo-div-4x6 {
+    width: 33%;
+    margin-bottom: 16.5%;
+    margin-top: 16.5%;
+    margin-left: 8.25%;
+    margin-right: 8.25%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#container-4x6 {
+    width: 80%;
+    border: 2px solid rgba(11, 36, 67, 1);
+}

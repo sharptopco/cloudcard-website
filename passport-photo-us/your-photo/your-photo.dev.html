@@ -1,0 +1,45 @@
+<!--
+?photoKey=rrdf488jggnforohlpu3rkb0trph43smsfj2c8soe2iau736ebmeuhvth33ge6q5
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Local Dev Page</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://sharptopco.github.io/cloudcard-website/shared/parameters.js"></script>
+    <link href="your-photo.css" rel="stylesheet" />
+</head>
+<body>
+<div id="loading" style="text-align: center;">
+    <p><img src="https://sharptopco.github.io/cloudcard-website/passport-photo-us/spin-1.1s-200px.gif" /></p>
+    <h2>Loading...</h2>
+</div>
+<div id="your-photo-content" style="display: none;"></div>
+
+<script>
+    $(document).ready(function() {
+        $('#your-photo-content').load("your-photo-content.html");
+    });
+</script>
+
+
+
+<div id="loading-4x6" style="text-align: center;">
+    <p><img src="https://sharptopco.github.io/cloudcard-website/passport-photo-us/spin-1.1s-200px.gif" /></p>
+    <h2>Loading...</h2>
+</div>
+<div id="your-photo-content-4x6" style="display: none;"></div>
+
+<script>
+    $(document).ready(function() {
+        $('#your-photo-content-4x6').load("your-photo-content-4x6.html");
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<div id="container-4x6" class="centered">
+    <div class="your-photo-div-4x6"><img src="../sample-watermark.png" style="height: 100%; width: 100%"/></div>
+    <div class="your-photo-div-4x6"><img src="../sample-watermark.png" style="height: 100%; width: 100%"/></div>
+</div>
+
+<script>
+    var photoKey = getParameterByName('photoKey');
+    $('.your-photo-div-4x6').css("background-image", "url(//api.onlinephotosubmission.com/api/photos/" + photoKey + "/bytes)");
+    setTimeout(function () {
+        $('#loading-4x6').hide('slow');
+        $('#your-photo-content-4x6').show('slow');
+        $('#your-photo-content-4x6').addClass('centered')
+    }, 1000);
+</script>

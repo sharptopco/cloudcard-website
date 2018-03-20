@@ -1,0 +1,11 @@
+<div class="your-photo-div"><img src="../sample-watermark.png" style="height: 100%; width: 100%"/></div>
+
+<script>
+    var photoKey = getParameterByName('photoKey');
+    $('.your-photo-div').css("background-image", "url(//api.onlinephotosubmission.com/api/photos/" + photoKey + "/bytes)");
+    setTimeout(function () {
+        $('#loading').hide('slow');
+        $('#your-photo-content').show('slow');
+        $('#your-photo-content').addClass('centered')
+    }, 1000);
+</script>
