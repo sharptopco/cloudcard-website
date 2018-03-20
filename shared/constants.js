@@ -1,1 +1,1 @@
-var API_URL = "test-api.onlinephotosubmission.com"
+var API_URL = "api.onlinephotosubmission.com"
