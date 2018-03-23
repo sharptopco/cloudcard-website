@@ -5,32 +5,40 @@ var data = {
 }
 var defaultEmailAddress = 'tony@sharptop.io';
 
+$(function () {
+    setTimeout(function () {
+        transitionFromTo($('#loading'), $('#uploader-content'));
+    }, 1000);
+});
+
 function showStepOne() {
-    transitionFromTo('.step-two', '.step-one')
+    transitionFromTo($('.step-two'), $('.step-one'))
 }
 
 function showStepTwo() {
-    transitionFromTo('.step-one', '.step-two')
+    transitionFromTo($('.step-one'), $('.step-two'))
 }
 
 function showStepThree() {
-    transitionFromTo('.step-two', '.step-three')
+    transitionFromTo($('.step-two'), $('.step-three'))
 }
 
 function showSelectedImage(encodedImage) {
-    $('#selected-image').attr('src', encodedImage).width('75%');
-    transitionFromTo('#user-icon', '#selected-image');
+    var selectedImage = $('#selected-image');
+    selectedImage.attr('src', encodedImage).width('75%');
+    transitionFromTo($('#user-icon'), selectedImage);
 }
 
-function transitionFromTo(from, to) {
-    var elementsToShow = $(to);
-    var elementsToHide = $(from);
+function fadeIn(elementsToShow) {
+    elementsToShow.fadeIn(500, function () {
+        elementsToShow.show();
+    });
+}
 
+function transitionFromTo(elementsToHide, elementsToShow) {
     elementsToHide.fadeOut(500, function () {
         elementsToHide.hide('slow');
-        elementsToShow.fadeIn(500, function () {
-            elementsToShow.show();
-        });
+        fadeIn(elementsToShow);
     });
 }
 
@@ -60,6 +68,7 @@ function onFileChange(fileInput) {
             var encodedImage = e.target.result;
             postImage(encodedImage);
             showSelectedImage(encodedImage);
+            fadeIn($('#next-button'));
         };
         reader.readAsDataURL(fileInput.files[0]);
     }
@@ -90,4 +99,17 @@ function submit() {
     data.email = $('#email').val();
     post(data);
     showStepThree();
+}
+
+$( document ).on( "click", "#next-button" , function() {
+    transitionFromTo($('.step-one'), $('.step-two'));
+    setTimeout(function () {
+        transitionFromTo($('.spinner'), $('.advertisement'));
+        $('#video').attr("src", "https://www.youtube.com/embed/QNPgvt6j1MA?autoplay=1");
+    }, 5000);
+});
+
+function openInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
 }
