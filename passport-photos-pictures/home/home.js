@@ -43,7 +43,7 @@ function transitionFromTo(elementsToHide, elementsToShow) {
 }
 
 function pad(num) {
-    return (num+"").padStart(2, '0')
+    return (num + "").padStart(2, '0')
 }
 
 function getDateString() {
@@ -101,15 +101,40 @@ function submit() {
     showStepThree();
 }
 
-$( document ).on( "click", "#next-button" , function() {
+function stepTwo() {
     transitionFromTo($('.step-one'), $('.step-two'));
+    var twoSeconds = 2000;
+    var oneMinute = 60000;
     setTimeout(function () {
         transitionFromTo($('.spinner'), $('.advertisement'));
         $('#video').attr("src", "https://www.youtube.com/embed/QNPgvt6j1MA?autoplay=1");
-    }, 5000);
-});
+        setTimeout(function (args) {
+            console.log('video done');
+            transitionFromTo($('.step-two'), $('.step-three'));
+        }, oneMinute + twoSeconds);
+    }, twoSeconds);
+};
+
+function stepThree() {
+    $('#video').attr("src", "about:blank");
+    transitionFromTo($('.step-two'), $('.step-three'));
+    startTimer(30, document.querySelector('#timer'));
+};
 
 function openInNewTab(url) {
     var win = window.open(url, '_blank');
     win.focus();
+}
+
+function startTimer(duration, display) {
+    var seconds = duration;
+    setInterval(function () {
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = seconds ;
+
+        if (--seconds < 0) {
+            seconds = duration;
+        }
+    }, 1000);
 }

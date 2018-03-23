@@ -8,20 +8,20 @@
             <p id="upload-label">Upload Photo</p>
         </div>
         <p><input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="onFileChange(this)"/></p>
-        <div><button id="next-button">Next</button></div>
+        <div><button id="next-button" onclick="stepTwo()">Next</button></div>
     </div>
 
     <div class="step-container step-two">
         <h2 class="step-two">We're cropping your photo now.  This can take a few minutes.</h2>
         <div class="spinner"><img src="../spin-1.1s-200px.gif" /></div>
-        <h4>Please enjoy this video while you wait.</h4>
+        <h4>Please enjoy some YouTube while you wait.</h4>
         <div><iframe id="video" class="advertisement" width="560" height="315" src="about:blank" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
-        <h4 class="advertisement">Check out <a href="https://onlinephotosubmission.com">Online Photo Submission</a> by CloudCard.</h4>
+        <p id="skip-video" class="advertisement" onclick="stepThree()"><a href="#">Skip Video</a></p>
     </div>
 
-
     <div class="step-container step-three">
-        <p>Where should we send your photo?</p>
+        <h2>Tired of waiting? Feel free to leave your email address and we'll send your cropped photo to you in a few minutes.</h2>
+        <p>You're photo's still being cropped.  We'll check again in <span id="timer"></span> seconds.</p>
         <p><input id="email" type="text" placeholder="email address"></p>
         <div id="buttons">
             <button class="uploader-secondary-button" onclick="showStepOne()">Back</button>
@@ -29,8 +29,8 @@
             <button onclick="submit();">Submit</button>
         </div>
     </div>
+    <h4 class="advertisement">Check out <a href="https://onlinephotosubmission.com">Online Photo Submission</a> by CloudCard.</h4>
 
-    <h2 class="step-three">That's it! Check your email for your perfectly cropped passport photo.</h2>
 </div>
 
 <!-- END OF UPLOADER -->
