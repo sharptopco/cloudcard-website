@@ -4,6 +4,7 @@ var data = {
     'email': null,
     'encodedImage': null
 }
+var defaultEmailAddress = 'tony@sharptop.io';
 
 function post(data) {
     $.ajax({
@@ -11,27 +12,49 @@ function post(data) {
         url: URL,
         dataType: 'json',
         contentType: 'application/json',
-        data: JSON.stringify(data)
+        data: JSON.stringify(data),
+        success: function (response) {
+            console.log('response', response);
+        }
     });
 }
 
 function showStepOne() {
-    $('.step-one').show('slow');
-    $('.step-two').hide('slow');
-    $('.step-three').hide('slow');
+    transitionFromTo('.step-two', '.step-one')
 }
 
 function showStepTwo() {
-    $('.step-one').hide('slow');
-    $('.step-two').show('slow');
-    $('.step-three').hide('slow');
+    transitionFromTo('.step-one', '.step-two')
 }
 
 function showStepThree() {
-    $('.step-one').hide('slow');
-    $('.step-two').hide('slow');
-    $('.step-three').show('slow');
+    transitionFromTo('.step-two', '.step-three')
 }
+
+function transitionFromTo(from, to) {
+    var elementsToShow = $(to);
+    var elementsToHide = $(from);
+
+    elementsToHide.fadeOut(500, function () {
+        elementsToHide.hide('slow');
+        elementsToShow.fadeIn(500, function () {
+            elementsToShow.show();
+        });
+    });
+}
+
+function generateRandomEmailAddress(baseAddress) {
+    var username = baseAddress.split("@")[0];
+    var domain = baseAddress.split("@")[1];
+    var currentdate = new Date();
+    var datetime = (currentdate.getMonth()+1)  + "."
+        + currentdate.getDate() + "_"
+        + currentdate.getHours()
+        + currentdate.getMinutes();
+    return username + "+" + datetime + "_" + makeid(4) + "@" + domain;
+}
+
+console.log('random email:', generateRandomEmailAddress(defaultEmailAddress));
 
 function onFileChange(element) {
     fileInput = element;
@@ -39,13 +62,14 @@ function onFileChange(element) {
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#selected-image').attr('src', e.target.result).width('75%');
-            $('#selected-image').show();
-            $('#user-icon').hide();
+            transitionFromTo('#user-icon', '#selected-image');
             data.encodedImage = e.target.result;
         };
         reader.readAsDataURL(fileInput.files[0]);
+        setTimeout(function () {
+            // showStepTwo();
+        }, 1000);
     }
-    showStepTwo();
 }
 
 function submit() {
