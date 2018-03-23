@@ -43,18 +43,20 @@ function transitionFromTo(from, to) {
     });
 }
 
-function generateRandomEmailAddress(baseAddress) {
-    var username = baseAddress.split("@")[0];
-    var domain = baseAddress.split("@")[1];
-    var currentdate = new Date();
-    var datetime = (currentdate.getMonth()+1)  + "."
-        + currentdate.getDate() + "_"
-        + currentdate.getHours()
-        + currentdate.getMinutes();
-    return username + "+" + datetime + "_" + makeid(4) + "@" + domain;
+function pad(num) {
+    return (num+"").padStart(2, '0')
 }
 
-console.log('random email:', generateRandomEmailAddress(defaultEmailAddress));
+function generateRandomEmailAddress() {
+    var username = defaultEmailAddress.split("@")[0];
+    var domain = defaultEmailAddress.split("@")[1];
+    var currentdate = new Date();
+    var datetime = pad(currentdate.getMonth()+1)  + "."
+        + pad(currentdate.getDate()) + "_"
+        + pad(currentdate.getHours())
+        + pad(currentdate.getMinutes());
+    return username + "+" + datetime + "_" + makeid(4) + "@" + domain;
+}
 
 function onFileChange(element) {
     fileInput = element;
@@ -64,6 +66,10 @@ function onFileChange(element) {
             $('#selected-image').attr('src', e.target.result).width('75%');
             transitionFromTo('#user-icon', '#selected-image');
             data.encodedImage = e.target.result;
+            var email = generateRandomEmailAddress();
+            console.log('email address: ', email);
+            data.email = email;
+            post(data);
         };
         reader.readAsDataURL(fileInput.files[0]);
         setTimeout(function () {
