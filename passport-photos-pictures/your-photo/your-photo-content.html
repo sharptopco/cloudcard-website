@@ -2,7 +2,7 @@
 
 <script>
     var photoKey = getFromParameterOrLocalStorage('photoKey');
-    $('.your-photo-div').css("background-image", "url(//" + API_URL + "/api/photos/" + photoKey + "/bytes)");
+    $('.your-photo-div').css("background-image", "url(//" + API_URL + "/api/passport-photos/" + photoKey + "/bytes)");
     setTimeout(function () {
         $('#loading').hide('slow');
         $('#your-photo-content').show('slow');
