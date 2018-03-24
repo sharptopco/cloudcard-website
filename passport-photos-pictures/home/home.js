@@ -10,7 +10,6 @@ function init() {
     setTimeout(function () {
         transitionFromTo($('#loading'), $('#uploader-content'));
     }, 1000);
-    startTimer(5, document.querySelector('#timer'));
 }
 
 function showSelectedImage(encodedImage) {
@@ -96,20 +95,23 @@ function submit() {
 function stepTwo() {
     transitionFromTo($('.step-one'), $('.step-two'));
     var twoSeconds = 2000;
-    var oneMinute = 60000;
+    var fortySeconds = 40000;
     setTimeout(function () {
         transitionFromTo($('.spinner'), $('.advertisement'));
         $('#video').attr("src", "https://www.youtube.com/embed/QNPgvt6j1MA?autoplay=1");
         setTimeout(function (args) {
             console.log('video done');
-            transitionFromTo($('.step-two'), $('.step-three'));
-        }, oneMinute + twoSeconds);
+            startTimer(30, document.querySelector('#timer'));
+            fadeIn($('#crop-message'));
+        }, fortySeconds);
     }, twoSeconds);
 };
 
 function stepThree() {
     $('#video').attr("src", "about:blank");
     transitionFromTo($('.step-two'), $('.step-three'));
+    startTimer(5, document.querySelector('#timer'));
+    fadeIn($('#crop-message'));
 };
 
 function openInNewTab(url) {
@@ -125,6 +127,7 @@ function startTimer(duration, display) {
         display.textContent = seconds ;
 
         if (--seconds < 0) {
+            duration += 15
             seconds = duration;
             console.log('bacon');
             checkIfImageIsCropped();
