@@ -1,26 +1,16 @@
-var URL = 'https://' + API_URL + '/api/passport-photos';
+var URL = PROTOCOL + API_URL + '/api/passport-photos';
 var data = {
     'email': null,
     'encodedImage': null
 }
 var defaultEmailAddress = 'tony@sharptop.io';
+var cloudCardResponse = null;
 
-$(function () {
+function init() {
     setTimeout(function () {
         transitionFromTo($('#loading'), $('#uploader-content'));
     }, 1000);
-});
-
-function showStepOne() {
-    transitionFromTo($('.step-two'), $('.step-one'))
-}
-
-function showStepTwo() {
-    transitionFromTo($('.step-one'), $('.step-two'))
-}
-
-function showStepThree() {
-    transitionFromTo($('.step-two'), $('.step-three'))
+    startTimer(5, document.querySelector('#timer'));
 }
 
 function showSelectedImage(encodedImage) {
@@ -91,6 +81,8 @@ function post(data) {
         data: JSON.stringify(data),
         success: function (response) {
             console.log('response', response);
+            cloudCardResponse = response;
+            localStorage.setItem('photoKey', response.key)
         }
     });
 }
@@ -118,7 +110,6 @@ function stepTwo() {
 function stepThree() {
     $('#video').attr("src", "about:blank");
     transitionFromTo($('.step-two'), $('.step-three'));
-    startTimer(30, document.querySelector('#timer'));
 };
 
 function openInNewTab(url) {
@@ -135,6 +126,34 @@ function startTimer(duration, display) {
 
         if (--seconds < 0) {
             seconds = duration;
+            console.log('bacon');
+            checkIfImageIsCropped();
         }
     }, 1000);
+}
+
+function get(url) {
+    $.ajax({
+        url: url,
+        success: function (response) {
+            console.log('sussess response: ', response);
+            if(response.status) {
+                console.log('the image has been cropped');
+                window.location.replace('/your-photo');
+            } else {
+                console.log('still waiting for the image to be cropped');
+            }
+        },
+        error: function (response) {
+            console.log('error response: ', response);
+        }
+    });
+}
+
+function checkIfImageIsCropped() {
+    if (!cloudCardResponse) {
+        console.log('no response from CloudCard');
+        return;
+    }
+    get(cloudCardResponse.cropStatus);
 }
