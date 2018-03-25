@@ -89,7 +89,8 @@ function post(data) {
 function submit() {
     data.email = $('#email').val();
     post(data);
-    showStepThree();
+    transitionFromTo($('.step-three'), $('.step-four'));
+    $('#crop-message').hide();
 }
 
 function startVideo() {

@@ -24,11 +24,16 @@
         <h2>Tired of waiting? Feel free to leave your email address and we'll send your cropped photo to you in a few minutes.</h2>
         <p><input id="email" type="text" placeholder="email address"></p>
         <div id="buttons">
-            <button class="uploader-secondary-button" onclick="showStepOne()">Back</button>
+            <button class="uploader-secondary-button hidden" onclick="showStepOne()">Back</button>
             <div id="button-padding"></div>
             <button onclick="submit();">Submit</button>
         </div>
     </div>
+
+    <div class="step-container step-four hidden">
+        <h2>That's it. Check your email for your perfectly cropped photo.</h2>
+    </div>
+
     <p id="crop-message" class="hidden">You're photo's still being cropped.  We'll check again in <span id="crop-message-timer" class="timer"></span> seconds.</p>
 
 </div>
