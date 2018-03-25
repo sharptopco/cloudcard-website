@@ -92,25 +92,29 @@ function submit() {
     showStepThree();
 }
 
+function startVideo() {
+    $('#video').attr("src", "https://www.youtube.com/embed/QNPgvt6j1MA?autoplay=1");
+}
+
+function startCropMessageTimer() {
+    startTimer(60, document.querySelector('#crop-message-timer'));
+    fadeIn($('#crop-message'));
+}
+
 function stepTwo() {
     transitionFromTo($('.step-one'), $('.step-two'));
     var twoSeconds = 2000;
-    var fortySeconds = 40000;
     setTimeout(function () {
         transitionFromTo($('.spinner'), $('.advertisement'));
-        $('#video').attr("src", "https://www.youtube.com/embed/QNPgvt6j1MA?autoplay=1");
-        setTimeout(function (args) {
-            console.log('video done');
-            startTimer(30, document.querySelector('#timer'));
-            fadeIn($('#crop-message'));
-        }, fortySeconds);
+        startVideo();
+        startSkipTimer(10, document.querySelector('#skip-timer'));
     }, twoSeconds);
 };
 
 function stepThree() {
     $('#video').attr("src", "about:blank");
     transitionFromTo($('.step-two'), $('.step-three'));
-    startTimer(5, document.querySelector('#timer'));
+    // startTimer(5, document.querySelector('#timer'));
     fadeIn($('#crop-message'));
 };
 
@@ -122,15 +126,27 @@ function openInNewTab(url) {
 function startTimer(duration, display) {
     var seconds = duration;
     setInterval(function () {
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = seconds ;
+        display.textContent = seconds < 10 ? "0" + seconds : seconds;
 
         if (--seconds < 0) {
             duration += 15
             seconds = duration;
             console.log('bacon');
             checkIfImageIsCropped();
+        }
+    }, 1000);
+}
+
+function startSkipTimer(duration, display) {
+    var seconds = duration;
+    var refreshIntervalId = setInterval(function () {
+        display.textContent = seconds < 10 ? "0" + seconds : seconds;
+
+        if (--seconds < 0) {
+            console.log('skip timer hit 0');
+            transitionFromTo($('#skip-video-countdown'), $('#skip-video'));
+            startCropMessageTimer();
+            clearInterval(refreshIntervalId);
         }
     }, 1000);
 }

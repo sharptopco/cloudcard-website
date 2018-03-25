@@ -92,20 +92,16 @@ button {
     width: 150px;
 }
 
-.advertisement {
-    display: none;
-}
-
 #skip-video {
     text-align: right;
 }
 
-#timer {
+.timer {
     color: red;
     font-weight: bold;
 }
 
-#crop-message {
+.hidden {
     display: none;
 }
 
