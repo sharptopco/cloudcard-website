@@ -1,0 +1,48 @@
+<!-- START OF UPLOADER -->
+<div id="uploader-container">
+    <div class="component-container step-one">
+        <h2>First, take your picture or select a photo from your device.</h2>
+        <div id="upload-button" onclick="$('#fileinput').click()">
+            <i id="user-icon" class="fas fa-user fa-9x"></i>
+            <img id="selected-image" src="#" alt="your selected image" />
+            <p id="upload-label">Upload Photo</p>
+        </div>
+        <p><input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="onFileChange(this)"/></p>
+        <div><button id="next-button" onclick="stepTwo()">Next</button></div>
+    </div>
+
+    <div class="component-container step-two">
+        <h2 class="step-two">We're cropping your photo now.  This can take a few minutes.</h2>
+        <div class="spinner"><img src="https://sharptopco.github.io/cloudcard-website/passport-photos-pictures/spin-1.1s-200px.gif" /></div>
+        <h4>Please enjoy some YouTube while you wait.</h4>
+        <div class="video-container"><iframe id="video" class="advertisement" width="560" height="315" src="about:blank" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+        <p id="skip-video-countdown" class="advertisement hidden">You can skip the video in <span id="skip-timer" class="timer">10</span> seconds.</p>
+        <p id="skip-video"  class="hidden" onclick="stepThree()"><a href="#">Skip Video</a></p>
+    </div>
+
+    <div class="component-container step-three">
+        <h2>Tired of waiting? Feel free to leave your email address and we'll send your cropped photo to you in a few minutes.</h2>
+        <h2>Relax! The professional's are reviewing your photo</h2>
+        <p>Our professional staff will crop and review your passport photos and check them against all d</p>
+        <p><input id="email" type="text" placeholder="email address"></p>
+        <div id="buttons">
+            <button class="uploader-secondary-button hidden" onclick="showStepOne()">Back</button>
+            <div id="button-padding"></div>
+            <button onclick="submit();">Submit</button>
+        </div>
+    </div>
+
+    <div class="component-container step-four hidden">
+        <h2>That's it. Check your email for your perfectly cropped photo.</h2>
+    </div>
+
+    <p id="crop-message" class="hidden">You're photo's still being cropped.  We'll check again in <span id="crop-message-timer" class="timer"></span> seconds.</p>
+
+</div>
+<script>
+    $(function () {
+        init();
+    });
+</script>
+
+<!-- END OF UPLOADER -->

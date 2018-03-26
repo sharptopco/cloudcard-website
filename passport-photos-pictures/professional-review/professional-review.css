@@ -1,0 +1,32 @@
+input {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 8px;
+}
+
+#buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+button {
+    border-radius: 300px;
+    padding: 12px 24px;
+    font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: #0b2443;
+    border-color: #0b2443;
+}
+
+.hidden {
+    display: none;
+}

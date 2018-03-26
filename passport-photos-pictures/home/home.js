@@ -4,7 +4,6 @@ var data = {
     'encodedImage': null
 }
 var defaultEmailAddress = 'tony@sharptop.io';
-var cloudCardResponse = null;
 
 function init() {
     setTimeout(function () {
@@ -80,100 +79,11 @@ function post(data) {
         data: JSON.stringify(data),
         success: function (response) {
             console.log('response', response);
-            cloudCardResponse = response;
-            localStorage.setItem('photoKey', response.key)
+            localStorage.setItem('cloudCardPhoto', JSON.stringify(response));
         }
     });
-}
-
-function submit() {
-    data.email = $('#email').val();
-    post(data);
-    transitionFromTo($('.step-three'), $('.step-four'));
-    $('#crop-message').hide();
-}
-
-function startVideo() {
-    $('#video').attr("src", "https://www.youtube.com/embed/QNPgvt6j1MA?autoplay=1");
-}
-
-function startCropMessageTimer() {
-    startTimer(60, document.querySelector('#crop-message-timer'));
-    fadeIn($('#crop-message'));
 }
 
 function stepTwo() {
-    transitionFromTo($('.step-one'), $('.step-two'));
-    var twoSeconds = 2000;
-    setTimeout(function () {
-        transitionFromTo($('.spinner'), $('.advertisement'));
-        startVideo();
-        startSkipTimer(10, document.querySelector('#skip-timer'));
-    }, twoSeconds);
+    window.location.href = routes.professionalReview;
 };
-
-function stepThree() {
-    $('#video').attr("src", "about:blank");
-    transitionFromTo($('.step-two'), $('.step-three'));
-    // startTimer(5, document.querySelector('#timer'));
-    fadeIn($('#crop-message'));
-};
-
-function openInNewTab(url) {
-    var win = window.open(url, '_blank');
-    win.focus();
-}
-
-function startTimer(duration, display) {
-    var seconds = duration;
-    setInterval(function () {
-        display.textContent = seconds < 10 ? "0" + seconds : seconds;
-
-        if (--seconds < 0) {
-            duration += 15
-            seconds = duration;
-            console.log('bacon');
-            checkIfImageIsCropped();
-        }
-    }, 1000);
-}
-
-function startSkipTimer(duration, display) {
-    var seconds = duration;
-    var refreshIntervalId = setInterval(function () {
-        display.textContent = seconds < 10 ? "0" + seconds : seconds;
-
-        if (--seconds < 0) {
-            console.log('skip timer hit 0');
-            transitionFromTo($('#skip-video-countdown'), $('#skip-video'));
-            startCropMessageTimer();
-            clearInterval(refreshIntervalId);
-        }
-    }, 1000);
-}
-
-function get(url) {
-    $.ajax({
-        url: url,
-        success: function (response) {
-            console.log('sussess response: ', response);
-            if(response.status) {
-                console.log('the image has been cropped');
-                window.location.replace('/your-photo');
-            } else {
-                console.log('still waiting for the image to be cropped');
-            }
-        },
-        error: function (response) {
-            console.log('error response: ', response);
-        }
-    });
-}
-
-function checkIfImageIsCropped() {
-    if (!cloudCardResponse) {
-        console.log('no response from CloudCard');
-        return;
-    }
-    get(cloudCardResponse.cropStatus);
-}
