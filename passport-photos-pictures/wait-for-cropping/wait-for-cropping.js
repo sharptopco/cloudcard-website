@@ -18,6 +18,7 @@ function init() {
 function fadeIn(elementsToShow) {
     elementsToShow.fadeIn(500, function () {
         elementsToShow.show();
+        elementsToShow.removeClass('hidden');
     });
 }
 
