@@ -1,15 +1,12 @@
 <!-- START OF UPLOADER -->
-<div id="uploader-container">
-    <div class="component-container step-one">
-        <div id="upload-button" onclick="$('#fileinput').click()">
-            <i id="user-icon" class="fas fa-user fa-9x"></i>
-            <img id="selected-image" src="#" alt="your selected image" />
-            <p id="upload-label">Upload Photo</p>
-        </div>
-        <p><input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="onFileChange(this)"/></p>
-        <div><button id="next-button" onclick="stepTwo()">Next</button></div>
+<div class="component-container">
+    <div id="upload-button" onclick="$('#fileinput').click()">
+        <i id="user-icon" class="fas fa-user fa-9x"></i>
+        <img id="selected-image" class="hidden" src="#" alt="your selected image"/>
+        <p id="upload-label">Upload Photo</p>
     </div>
-
+    <p><input id="fileinput" class="hidden" type="file" accept="image/gif, image/jpeg, image/png" onchange="onFileChange(this)"/></p>
+    <div><button id="next-button" class="p3-button hidden" onclick="next()">Next</button></div>
 </div>
 <script>
     $(function () {

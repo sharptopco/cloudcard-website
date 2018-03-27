@@ -1,9 +1,4 @@
-var URL = PROTOCOL + API_URL + '/api/passport-photos';
-var data = {
-    'email': null,
-    'encodedImage': null
-}
-var defaultEmailAddress = 'tony@sharptop.io';
+var defaultEmailAddress = 'noreply@onlinephotosubmission.com';
 
 function init() {
     setTimeout(function () {
@@ -15,19 +10,6 @@ function showSelectedImage(encodedImage) {
     var selectedImage = $('#selected-image');
     selectedImage.attr('src', encodedImage).width('75%');
     transitionFromTo($('#user-icon'), selectedImage);
-}
-
-function fadeIn(elementsToShow) {
-    elementsToShow.fadeIn(500, function () {
-        elementsToShow.show();
-    });
-}
-
-function transitionFromTo(elementsToHide, elementsToShow) {
-    elementsToHide.fadeOut(500, function () {
-        elementsToHide.hide('slow');
-        fadeIn(elementsToShow);
-    });
 }
 
 function pad(num) {
@@ -63,27 +45,12 @@ function onFileChange(fileInput) {
 }
 
 function postImage(encodedImage) {
-    data.encodedImage = encodedImage;
-    var email = generateRandomEmailAddress();
-    console.log('email address: ', email);
-    data.email = email;
-    post(data);
-}
-
-function post(data) {
-    $.ajax({
-        type: 'POST',
-        url: URL,
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        success: function (response) {
-            console.log('response', response);
-            localStorage.setItem('cloudCardPhoto', JSON.stringify(response));
-        }
+    post({
+        'email': generateRandomEmailAddress(),
+        'encodedImage': encodedImage
     });
 }
 
-function stepTwo() {
+function next() {
     window.location.href = routes.professionalReview;
 };
