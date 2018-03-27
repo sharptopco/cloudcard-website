@@ -1,8 +1,4 @@
-var URL = PROTOCOL + API_URL + '/api/passport-photos';
-var data = {
-    'email': null,
-    'encodedImage': null
-}
+var data = { };
 
 function init() {
     getPhoto();
@@ -11,42 +7,14 @@ function init() {
     }, 1000);
 }
 
-function fadeIn(elementsToShow) {
-    elementsToShow.fadeIn(500, function () {
-        elementsToShow.show();
-        elementsToShow.removeClass('hidden');
-    });
-}
-
-function transitionFromTo(elementsToHide, elementsToShow) {
-    elementsToHide.fadeOut(500, function () {
-        elementsToHide.hide('slow');
-        fadeIn(elementsToShow);
-    });
-}
-
-function post(data) {
-    $.ajax({
-        type: 'POST',
-        url: URL,
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        success: function (response) {
-            console.log('response', response);
-            localStorage.setItem('photoKey', response.key)
-            window.location.href = routes.professionalReviewThankYou;
-        }
-    });
-}
-
 function submit() {
     data.email = $('#email').val();
-    post(data);
+    post(data, function () {
+        window.location.href = routes.professionalReviewThankYou;
+    });
 }
 
 function getPhoto() {
-
     cloudCardPhoto = JSON.parse(localStorage.getItem('cloudCardPhoto'))
     toDataURL(cloudCardPhoto.bytes, function (encodedImage) {
         data.encodedImage = encodedImage;
