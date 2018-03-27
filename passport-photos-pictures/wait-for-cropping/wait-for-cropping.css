@@ -1,14 +1,6 @@
-#skip-video {
-    text-align: right;
-}
-
 .timer {
     color: red;
     font-weight: bold;
-}
-
-.hidden {
-    display: none;
 }
 
 #component-content {

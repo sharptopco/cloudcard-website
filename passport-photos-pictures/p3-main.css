@@ -12,3 +12,7 @@
     background-color: #0b2443;
     border-color: #0b2443;
 }
+
+.hidden {
+    display: none;
+}
