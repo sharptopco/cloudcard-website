@@ -51,18 +51,6 @@ function getPhoto() {
     toDataURL(cloudCardPhoto.bytes, function (encodedImage) {
         data.encodedImage = encodedImage;
     });
-
-    // console.log('cloudCardPhoto', cloudCardPhoto)
-    // $.ajax({
-    //     url: cloudCardPhoto.bytes,
-    //     success: function (response) {
-    //         console.log('sussess response: ', response.length);
-    //         data.bytes = response;
-    //     },
-    //     error: function (response) {
-    //         console.log('error response: ', response);
-    //     }
-    // });
 }
 
 function toDataURL(url, callback) {

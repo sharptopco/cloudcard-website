@@ -1,11 +1,6 @@
 var waitTime = 15;
 
 function init() {
-    startCropMessageTimer();
-    $('#skip-video > a').attr('href', routes.yourPhoto);
-}
-
-function startCropMessageTimer() {
     startTimer(waitTime, document.querySelector('#crop-message-timer'));
     fadeIn($('#crop-message'));
 }
@@ -22,3 +17,18 @@ function startTimer(duration, display) {
         }
     }, 1000);
 }
+
+function checkIfImageIsCropped() {
+    $.ajax({
+        url: getCloudCardPhotoFromLocalStorage().cropStatus,
+        success: function (response) {
+            if(response.status) {
+                transitionFromTo($('#crop-message'), $('#next-button'));
+            }
+        }
+    });
+}
+
+function next() {
+    window.location.href = routes.yourPhoto;
+};

@@ -1,0 +1,14 @@
+
+.p3-button {
+    border-radius: 300px;
+    padding: 12px 24px;
+    font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: #0b2443;
+    border-color: #0b2443;
+}
