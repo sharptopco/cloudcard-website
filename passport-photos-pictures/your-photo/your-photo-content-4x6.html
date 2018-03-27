@@ -4,11 +4,7 @@
 </div>
 
 <script>
-    var photoKey = getFromParameterOrLocalStorage('photoKey');
-    $('.your-photo-div-4x6').css("background-image", "url(//" + API_URL + "/api/passport-photos/" + photoKey + "/bytes)");
-    setTimeout(function () {
-        $('#loading-4x6').hide('slow');
-        $('#your-photo-content-4x6').show('slow');
-        $('#your-photo-content-4x6').addClass('centered')
-    }, 1000);
+    $(function () {
+        init4x6();
+    });
 </script>
