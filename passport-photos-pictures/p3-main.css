@@ -16,3 +16,9 @@
 .hidden {
     display: none;
 }
+
+.centered {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}

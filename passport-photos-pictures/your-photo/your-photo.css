@@ -1,7 +1,7 @@
 .your-photo-div {
-    width: 100%;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 .your-photo-div-4x6 {
@@ -10,14 +10,10 @@
     margin-top: 16.5%;
     margin-left: 8.25%;
     margin-right: 8.25%;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 
-.centered {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.your-photo-div > img {
+    width: 100%;
 }
 
 #container-4x6 {
