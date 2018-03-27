@@ -13,7 +13,9 @@ function post(data, callback) {
         success: function (response) {
             console.log('response', response);
             localStorage.setItem('cloudCardPhoto', JSON.stringify(response));
-            callback(response);
+            if(callback != null) {
+                callback(response);
+            }
         }
     });
 }
