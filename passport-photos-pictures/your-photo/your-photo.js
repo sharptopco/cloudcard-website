@@ -15,11 +15,3 @@ function init4x6() {
         $('#your-photo-content-4x6').addClass('centered')
     }, 1000);
 }
-
-function getPhotoKey() {
-    var photoKey = getParameterByName('photoKey');
-    if(!photoKey) {
-        photoKey = JSON.parse(localStorage.getItem('cloudCardPhoto')).key;
-    }
-    return photoKey;
-}
