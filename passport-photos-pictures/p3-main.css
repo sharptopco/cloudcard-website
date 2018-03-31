@@ -9,8 +9,8 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #fff;
-    background-color: #0b2443;
-    border-color: #0b2443;
+    background-color: rgb(50, 140, 99);
+    border-color: rgb(50, 140, 99);
 }
 
 .hidden {
