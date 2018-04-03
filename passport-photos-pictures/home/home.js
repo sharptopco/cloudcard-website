@@ -1,4 +1,4 @@
-var defaultEmailAddress = 'noreply@onlinephotosubmission.com';
+var defaultEmailAddress = 'luke@onlinephotosubmission.com';
 
 function init() {
     setTimeout(function () {
