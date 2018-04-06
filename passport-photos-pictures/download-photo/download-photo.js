@@ -1,20 +1,20 @@
 function initDownloadPhoto() {
-    var photoKey = getPhotoKey()
-    var photoURL = "//" + API_URL + "/api/passport-photos/" + photoKey + "/bytes";
+    var photoURL = getPhotoURL();
 
+    create4x6Image(photoURL)
     $('#download-photo-image').attr("src", photoURL);
     $('.download-link').attr("href", photoURL);
-    $('.sqs-block-button-element').attr("href", photoURL);
-    $('.sqs-block-button-element').attr("download", "PassportPhoto.jpg");
+    
     setTimeout(function () {
-        transitionFromTo($('#loading'), $('#download-photo-content'));
-        $('#download-photo-content').addClass('centered')
-        $('.sqs-block-button-element').text("Download Photo");
+        var downloadPhotoContent = $('#download-photo-content');
+        transitionFromTo($('#loading'), downloadPhotoContent);
+        downloadPhotoContent.addClass('centered')
+        setupSquarespaceButton(photoURL);
+
     }, 1000);
 }
-function loadImagetoCanvas(){
-    var photoKey = getPhotoKey()
-    var photoURL = "//" + API_URL + "/api/passport-photos/" + photoKey + "/bytes";
+
+function create4x6Image(photoURL){
     var img = new Image();
     img.crossOrigin = "Anonymous";
     img.src = photoURL;
@@ -27,3 +27,17 @@ function loadImagetoCanvas(){
         $('#four-by-six-image').attr("src", fourBySixImg);
     }
 }
+
+function setupSquarespaceButton(photoURL) {
+    var squareSpaceButton = $('.sqs-block-button-element');
+    squareSpaceButton.text("Download Photo");
+    squareSpaceButton.attr("href", photoURL);
+    squareSpaceButton.attr("download", "PassportPhoto.jpg");
+}
+
+function getPhotoURL() {
+    var photoKey = getPhotoKey()
+    var photoURL = "//" + API_URL + "/api/passport-photos/" + photoKey + "/bytes";
+    return photoURL;
+}
+
