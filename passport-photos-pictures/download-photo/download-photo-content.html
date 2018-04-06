@@ -1,8 +1,7 @@
 <p><a class="download-link" href="#" download><img id="download-photo-image"/></a></p>
-<body>
-    <canvas id="myCanvas" height="1200" width="1800"></canvas>
-    <script>window.onload = loadImagetoCanvas()</script>
-</body>
+<canvas id="myCanvas" class="hidden" height="1200" width="1800"></canvas>
+<div id="four-by-six-image-container"><img src="" id="four-by-six-image"/></div>
+<script>window.onload = loadImagetoCanvas()</script>
 <script>
     $(function () {
         initDownloadPhoto();
