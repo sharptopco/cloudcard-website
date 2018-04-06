@@ -19,6 +19,7 @@ function loadImagetoCanvas(){
     var photoURL = "//" + API_URL + "/api/passport-photos/" + photoKey + "/bytes";
     var img = new Image();
     img.src = photoURL;
+    img.crossOrigin = "Anonymous";
     img.onload = function(){
         var canvas = document.getElementById('myCanvas');
         var ctx = canvas.getContext('2d');
