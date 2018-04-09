@@ -1,10 +1,10 @@
 function initDownloadPhoto() {
     var photoURL = getPhotoURL();
 
-    create4x6Image(photoURL)
-    $('#download-photo-image').attr("src", photoURL);
-    $('.download-link').attr("href", photoURL);
-
+    // createImage(photoURL)
+    // $('#download-photo-image').attr("src", photoURL);
+    // $('.download-link').attr("href", photoURL);
+    //
     setTimeout(function () {
         var downloadPhotoContent = $('#download-photo-content');
         transitionFromTo($('#loading'), downloadPhotoContent);
@@ -15,6 +15,12 @@ function initDownloadPhoto() {
 }
 
 function initDownloadPhoto4x6() {
+    var photoURL = getPhotoURL();
+
+    create4x6Image(photoURL)
+    $('#download-photo-image').attr("src", photoURL);
+    $('.download-link').attr("href", photoURL);
+
     setTimeout(function () {
         var downloadPhotoContent4x6 = $('#download-photo-content-4x6');
         transitionFromTo($('#loading-4x6'), downloadPhotoContent4x6);
@@ -28,16 +34,37 @@ function create4x6Image(photoURL){
     img.crossOrigin = "Anonymous";
     img.src = photoURL;
     img.onload = function(){
-        var canvas = document.getElementById('myCanvas');
-        var ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 200, 300, 600, 600);
-        ctx.drawImage(img, 1000, 300, 600, 600);
-        ctx.strokeRect(200, 300, 600, 600);
-        ctx.strokeRect(1000, 300, 600, 600);
-        var fourBySixImg = canvas.toDataURL("image/png");
+        var fourBySixCanvas = document.getElementById('fourBySixCanvas');
+        var ctx2 = fourBySixCanvas.getContext('2d');
+        ctx2.drawImage(img, 200, 300, 600, 600);
+        ctx2.drawImage(img, 1000, 300, 600, 600);
+        ctx2.strokeRect(200, 300, 600, 600);
+        ctx2.strokeRect(1000, 300, 600, 600);
+        var fourBySixImg = fourBySixCanvas.toDataURL("image/png");
         $('#four-by-six-image').attr("src", fourBySixImg);
+
+        var twoByTwoCanvas = document.getElementById('twoByTwoCanvas');
+        var ctx1 = twoByTwoCanvas.getContext('2d');
+        ctx1.drawImage(img, 600, 300, 600, 600);
+        ctx1.strokeRect(600, 300, 600, 600);
+        var twoByTwoImg = twoByTwoCanvas.toDataURL("image/png");
+        $('#two-by-two-image').attr("src", twoByTwoImg);
     }
 }
+
+// function createImage(photoURL){
+//     var img = new Image();
+//     img.crossOrigin = "Anonymous";
+//     img.src = photoURL;
+//     img.onload = function(){
+//         var canvas = document.getElementById('myCanvas');
+//         var ctx = canvas.getContext('2d');
+//         ctx.drawImage(img, 600, 300, 600, 600);
+//         ctx.strokeRect(600, 300, 600, 600);
+//         var twoByTwoImg = canvas.toDataURL("image/png");
+//         $('#two-by-two-image').attr("src", twoByTwoImg);
+//     }
+// }
 
 function setupSquarespaceButton(photoURL) {
     var squareSpaceButton = $('.sqs-block-button-element');
