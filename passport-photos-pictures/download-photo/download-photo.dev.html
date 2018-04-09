@@ -31,11 +31,18 @@
     <p><img src="https://sharptopco.github.io/cloudcard-website/passport-photos-pictures/spin-1.1s-200px.gif"/></p>
     <h2>Loading...</h2>
 </div>
-<div id="download-photo-content" style="display: none;"></div>
+<div id="download-photo-content" style="display: none; border: 1px solid blue;"></div>
+
+<div id="loading-4x6" style="text-align: center;">
+    <p><img src="https://sharptopco.github.io/cloudcard-website/passport-photos-pictures/spin-1.1s-200px.gif"/></p>
+    <h2>Loading...</h2>
+</div>
+<div id="download-photo-content-4x6" style="display: none; border: 1px solid red;">Bacon</div>
 
 <script>
     $(document).ready(function () {
         $('#download-photo-content').load("download-photo-content.html");
+        $('#download-photo-content-4x6').load("download-photo-content-4x6.html");
     });
 </script>
 

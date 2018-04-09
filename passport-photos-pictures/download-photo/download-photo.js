@@ -4,7 +4,7 @@ function initDownloadPhoto() {
     create4x6Image(photoURL)
     $('#download-photo-image').attr("src", photoURL);
     $('.download-link').attr("href", photoURL);
-    
+
     setTimeout(function () {
         var downloadPhotoContent = $('#download-photo-content');
         transitionFromTo($('#loading'), downloadPhotoContent);
@@ -12,6 +12,15 @@ function initDownloadPhoto() {
         setupSquarespaceButton(photoURL);
 
     }, 1000);
+}
+
+function initDownloadPhoto4x6() {
+    setTimeout(function () {
+        var downloadPhotoContent4x6 = $('#download-photo-content-4x6');
+        transitionFromTo($('#loading-4x6'), downloadPhotoContent4x6);
+        downloadPhotoContent4x6.addClass('centered')
+    }, 1000);
+
 }
 
 function create4x6Image(photoURL){
