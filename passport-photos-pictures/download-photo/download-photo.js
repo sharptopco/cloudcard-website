@@ -32,6 +32,8 @@ function create4x6Image(photoURL){
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img, 200, 300, 600, 600);
         ctx.drawImage(img, 1000, 300, 600, 600);
+        ctx.strokeRect(200, 300, 600, 600);
+        ctx.strokeRect(1000, 300, 600, 600);
         var fourBySixImg = canvas.toDataURL("image/png");
         $('#four-by-six-image').attr("src", fourBySixImg);
     }
