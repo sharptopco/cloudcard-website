@@ -40,14 +40,14 @@ function create4x6Image(photoURL){
         ctx2.drawImage(img, 1000, 300, 600, 600);
         ctx2.strokeRect(200, 300, 600, 600);
         ctx2.strokeRect(1000, 300, 600, 600);
-        var fourBySixImg = fourBySixCanvas.toDataURL("image/png");
+        var fourBySixImg = fourBySixCanvas.toDataURL("image/jpeg");
         $('#four-by-six-image').attr("src", fourBySixImg);
 
         var twoByTwoCanvas = document.getElementById('twoByTwoCanvas');
         var ctx1 = twoByTwoCanvas.getContext('2d');
         ctx1.drawImage(img, 600, 300, 600, 600);
         ctx1.strokeRect(600, 300, 600, 600);
-        var twoByTwoImg = twoByTwoCanvas.toDataURL("image/png");
+        var twoByTwoImg = twoByTwoCanvas.toDataURL("image/jpeg");
         $('#two-by-two-image').attr("src", twoByTwoImg);
     }
 }
