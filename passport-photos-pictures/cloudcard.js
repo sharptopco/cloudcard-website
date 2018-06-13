@@ -27,3 +27,8 @@ function getPhotoKey() {
     }
     return photoKey;
 }
+
+function getPhotoURL() {
+    var photoURL = PHOTO_URL + '?photoKey=' + getPhotoKey();
+    return photoURL;
+}

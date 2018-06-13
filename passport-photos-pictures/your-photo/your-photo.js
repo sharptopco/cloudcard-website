@@ -1,6 +1,7 @@
 function init() {
     var photoKey = getPhotoKey()
     $('.your-photo-div').css("background-image", "url(//" + API_URL + "/api/passport-photos/" + photoKey + "/bytes)");
+    $('#photoURL').value(getPhotoURL());
     setTimeout(function () {
         transitionFromTo($('#loading'), $('#your-photo-content'));
         $('#your-photo-content').addClass('centered')
