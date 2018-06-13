@@ -29,6 +29,8 @@ function getPhotoKey() {
 }
 
 function getPhotoURL() {
-    var photoURL = PHOTO_URL + '?photoKey=' + getPhotoKey();
+    console.log("getPhotoKey: ", getPhotoKey())
+    var photoURL = 'www.passportphotos.pictures/download-photo?photoKey=' + getPhotoKey();
+    console.log("PhotoURL: ", photoURL);
     return photoURL;
 }
