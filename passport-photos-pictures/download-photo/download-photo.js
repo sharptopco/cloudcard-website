@@ -1,8 +1,9 @@
 function initDownloadPhoto() {
     var photoURL = getPhotoURL();
+    $('#two-by-two-image').attr("src", photoURL);
 
     setTimeout(function () {
-        var downloadPhotoContent = $('#download-photo-content');
+        var downloadPhotoContent = $('#two-by-two-image');
         transitionFromTo($('#loading'), downloadPhotoContent);
         downloadPhotoContent.addClass('centered')
         setupSquarespaceButton(photoURL);
