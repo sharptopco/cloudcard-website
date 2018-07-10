@@ -4,21 +4,23 @@
 <!-- CODE BLOCK -->
 <div style="text-align: left;">
     <img id="status-image" src="" />
+    <img id="red-x" style="display: none" src="https://sharptopco.github.io/cloudcard-website/online-photo-submission-com/red-x.jpeg" />
 </div>
 <script>
     var statusImage = 'https://api.onlinephotosubmission.com/api/photos/u1o3fbk7lp9drsmds06smc3gnml9h8phnai87i419j0mumtt15etk232ng6unthf/bytes';
+    var tenSeconds = 10000;
 
     function getStatus(successCallback) {
         $.ajax({
             type: 'GET',
             url: statusImage,
-            success: function (response) {
-                if(successCallback != null) {
-                    successCallback(response);
-                }
+            success: function () {
+                showStatusImage();
+                $('#red-x').hide();
             },
             error: function (err) {
-                console.log(err)
+                $('#status-image').hide()
+                $('#red-x').show();
             }
         });
     }
@@ -26,8 +28,7 @@
     function showStatusImage() {
         $('#status-image').attr('src', statusImage);
     }
-    window.setInterval(function() {
-        // $('#status-image').hide()
-        getStatus(showStatusImage)
-    }, 1000)
+
+    getStatus(showStatusImage);
+    window.setInterval(function() { getStatus(showStatusImage) }, tenSeconds)
 </script>
