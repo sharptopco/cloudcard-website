@@ -1,0 +1,33 @@
+<!-- HEADER -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+
+<!-- CODE BLOCK -->
+<div style="text-align: left;">
+    <img id="status-image" src="" />
+</div>
+<script>
+    var statusImage = 'https://api.onlinephotosubmission.com/api/photos/u1o3fbk7lp9drsmds06smc3gnml9h8phnai87i419j0mumtt15etk232ng6unthf/bytes';
+
+    function getStatus(successCallback) {
+        $.ajax({
+            type: 'GET',
+            url: statusImage,
+            success: function (response) {
+                if(successCallback != null) {
+                    successCallback(response);
+                }
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
+    }
+
+    function showStatusImage() {
+        $('#status-image').attr('src', statusImage);
+    }
+    window.setInterval(function() {
+        // $('#status-image').hide()
+        getStatus(showStatusImage)
+    }, 1000)
+</script>
