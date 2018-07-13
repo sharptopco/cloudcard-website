@@ -1,0 +1,18 @@
+<script src="https://sharptopco.github.io/cloudcard-website/shared/parameters.js"></script>
+
+<!-- PAGE HEADER -->
+
+<script>
+    function open_in_new_tab(url) {
+        window.open(url, '_blank');
+        window.focus();
+    }
+    disableRedirect = getFromParameterOrLocalStorage('disableRedirect');
+    console.log('disableRedirect: ', disableRedirect);
+    if(disableRedirect !== 'true')
+        open_in_new_tab('https://sharptop.atlassian.net/wiki/spaces/CCD/pages/485949443/CloudCard+Service+Updates');
+</script>
+
+<!-- END PAGE HEADER -->
+
+<h1>Bacon!</h1>
