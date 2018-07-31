@@ -8,7 +8,7 @@
 </div>
 <script>
     var statusURL = 'https://api.onlinephotosubmission.com/status';
-    var tenSeconds = 10000;
+    var oneMin = 60000;
 
     function getStatus() {
         $.ajax({
@@ -28,5 +28,5 @@
     }
 
     getStatus();
-    window.setInterval(function() { getStatus() }, tenSeconds)
+    window.setInterval(function() { getStatus() }, oneMin)
 </script>
