@@ -1,3 +1,7 @@
 .status-message-time {
     font-weight: bold;
 }
+
+.status-message-content {
+    margin-left: 1em;
+}
