@@ -1,32 +1,40 @@
-<!-- HEADER -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script>
+    /* TO MANUALLY SET CLOUD CARD TO DOWN CHANGE CLOUDCARD_IS_DOWN TO TRUE */
+    CLOUDCARD_IS_DOWN = false;
+</script>
 
-<!-- CODE BLOCK -->
 <div style="text-align: center;">
     <img id="status-image" style="display: none" src="https://api.onlinephotosubmission.com/api/photos/u1o3fbk7lp9drsmds06smc3gnml9h8phnai87i419j0mumtt15etk232ng6unthf/bytes" />
     <img id="red-x" style="display: none" src="https://sharptopco.github.io/cloudcard-website/online-photo-submission-com/red-x.jpeg" />
 </div>
 <script>
     var statusURL = 'https://api.onlinephotosubmission.com/status';
-    var oneMin = 60000;
+    var fiveMin = 300000;
+
+    function showDown() {
+        $('#status-image').hide();
+        $('#red-x').show();
+    }
+
+    function showOk() {
+        $('#status-image').show();
+        $('#red-x').hide();
+    }
 
     function getStatus() {
+
+        if(CLOUDCARD_IS_DOWN) {
+            showDown();
+            return;
+        }
         $.ajax({
             type: 'GET',
             url: statusURL,
-            success: function () {
-                console.log('success')
-                $('#status-image').show()
-                $('#red-x').hide();
-            },
-            error: function (err) {
-                console.log('fail')
-                $('#status-image').hide()
-                $('#red-x').show();
-            }
+            success: function () { showOk(); },
+            error: function (err) { showDown() }
         });
     }
 
     getStatus();
-    window.setInterval(function() { getStatus() }, oneMin)
+    window.setTimeout(function() { window.location.reload(true); }, fiveMin);
 </script>
