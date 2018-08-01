@@ -3,8 +3,8 @@
 Assets for CloudCard Websites
 
 - CloudCard
-    - [status](https://sharptopco.github.io/cloudcard-website/online-photo-submission-com/status.html)
-    - [status messages](https://sharptopco.github.io/cloudcard-website/online-photo-submission-com/status-messages-content.html)
+    - Status [edit](https://github.com/sharptopco/cloudcard-website/blob/gh-pages/online-photo-submission-com/status.html) [raw](https://sharptopco.github.io/cloudcard-website/online-photo-submission-com/status.html)
+    - status messages [edit](https://github.com/sharptopco/cloudcard-website/blob/gh-pages/online-photo-submission-com/status-messages-content.html) [raw](https://sharptopco.github.io/cloudcard-website/online-photo-submission-com/status-messages-content.html)
 - SeasonPassPhoto.com
 - PassportPhoto.us
     - download photo
